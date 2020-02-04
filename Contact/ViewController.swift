@@ -19,10 +19,7 @@ class ViewController: UIViewController {
         
         contactList.delegate = self
         contactList.dataSource = self
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+        
         contactList.reloadData()
     }
 

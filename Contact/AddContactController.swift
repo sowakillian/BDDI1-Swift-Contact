@@ -25,25 +25,7 @@ class AddContactController: UIViewController {
 
     }
     
-    func getFieldValues() -> (firstName:String, lastName:String, phoneNumber:String)? {
-        if let firstName = firstNameField.text,
-            let lastName = lastNameField.text,
-                let phoneNumber = phoneNumberField.text {
-                    return (firstName, lastName, phoneNumber)
-            }
-        return nil
-    }
-    
     @IBAction func saveButtonClicked(_ sender: Any) {
-        
-        if let fields = getFieldValues() {
-            let contact = Contact(firstName: fields.firstName, lastName: fields.lastName, phoneNumber: fields.phoneNumber)
-            
-            ContactManager.instance.contact.append(contact)
-            
-            self.navigationController?.popToRootViewController(animated: true)
-        }
-        
         self.performSegue(withIdentifier: "toViewController", sender: nil)
     }
 
@@ -54,6 +36,7 @@ class AddContactController: UIViewController {
             }
         }
     }
+
 
 }
 
