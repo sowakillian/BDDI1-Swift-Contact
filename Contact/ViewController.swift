@@ -9,8 +9,6 @@
 import UIKit
 
 class ViewController: UIViewController {
-    
-    var datasContact:[Contact] = []
 
     @IBOutlet weak var contactList: UITableView!
     
@@ -19,22 +17,24 @@ class ViewController: UIViewController {
         
         contactList.delegate = self
         contactList.dataSource = self
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         contactList.reloadData()
     }
-
 
 }
 
 extension ViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return datasContact.count
+        return ContactManager.instance.contact.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = contactList.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
 
-        let currentValue = datasContact[indexPath.row]
+        let currentValue = ContactManager.instance.contact[indexPath.row]
         cell.textLabel?.text = currentValue.display()
         
               return cell
